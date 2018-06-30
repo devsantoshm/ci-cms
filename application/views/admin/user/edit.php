@@ -8,19 +8,19 @@
 	<table class="table">
 		<tr>
 			<td>Name</td>
-			<td><?php echo form_input('name', set_value('name', empty($user->id) ? '' : $user->name)); ?></td>
+			<td><?php echo form_input('name', set_value('name', $user->name), 'class="form-control"'); ?></td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td><?php echo form_input('email', set_value('email', empty($user->id) ? '' : $user->email)); ?></td>
+			<td><?php echo form_input('email', set_value('email', $user->email), 'class="form-control"'); ?></td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><?php echo form_password('password_confirm'); ?></td>
+			<td><?php echo form_password('password_confirm', '', 'class="form-control"'); ?></td>
 		</tr> 
 		<tr>
 			<td>Confirm Password</td>
-			<td><?php echo form_password('password'); ?></td>
+			<td><?php echo form_password('password', '', 'class="form-control"'); ?></td>
 		</tr> 
 		<tr>
 			<td></td>
