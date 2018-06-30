@@ -38,8 +38,8 @@ class User_m extends MY_Model {
 			'label' => 'Password',
 			'rules' => 'trim|matches[password_confirm]'
 		),
-		'password_condirm' => array(
-			'field' => 'password_condirm',
+		'password_confirm' => array(
+			'field' => 'password_confirm',
 			'label' => 'Confirm password',
 			'rules' => 'trim|matches[password]'
 		),

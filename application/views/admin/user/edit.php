@@ -7,12 +7,24 @@
 	<?php echo form_open() ?>
 	<table class="table">
 		<tr>
+			<td>Name</td>
+			<td><?php echo form_input('name', set_value('name', empty($user->id) ? '' : $user->name)); ?></td>
+		</tr>
+		<tr>
 			<td>Email</td>
-			<td><?php echo form_input('email'); ?></td>
+			<td><?php echo form_input('email', set_value('email', empty($user->id) ? '' : $user->email)); ?></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><?php echo form_password('password_confirm'); ?></td>
+		</tr> 
+		<tr>
+			<td>Confirm Password</td>
+			<td><?php echo form_password('password'); ?></td>
 		</tr> 
 		<tr>
 			<td></td>
-			<td><?php echo form_submit('submit', 'Log in', 'class="btn btn-primary"'); ?></td>
+			<td><?php echo form_submit('submit', 'Save', 'class="btn btn-primary"'); ?></td>
 		</tr>
 	</table>
 	<?php echo form_close() ?>

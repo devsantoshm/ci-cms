@@ -20,7 +20,7 @@ class User extends Admin_Controller {
 		$id == NULL || $this->data['user'] = $this->user_m->get($id);
 
 		$rules = $this->user_m->rules_admin;
-		$id || $rules['password']['rules'] .= '|required';
+		$id || $rules['password']['rules'] .= '|required'; //si hay un id que no sea requerido el password
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == TRUE) {
@@ -64,7 +64,7 @@ class User extends Admin_Controller {
 	{
 		$id = $this->uri->segment(4);
 		$this->db->where('email', $this->input->post('email'));
-		!$id || $this->db->where('id !=', $id);
+		!$id || $this->db->where('id !=', $id); //diferente del id del actual usuario
 		$user = $this->user_m->get();
 
 		if (count($user)) {
