@@ -8,7 +8,7 @@
 	<script type="text/javascript">
 		tinymce.init({
 		  selector: 'textarea',
-		  height: 250,
+		  height: 200,
 		  theme: 'modern',
 		  mobile: {
 		    theme: 'beta-mobile',
