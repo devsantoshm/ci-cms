@@ -51,6 +51,24 @@ class Page_m extends MY_Model {
 
 	}
 
+	public function get_nested()
+	{
+		$this->db->order_by('parent_id'); // para que ordene primero los padres luego los hijos
+		$pages = $this->db->get('pages')->result_array();
+
+		$array = array();
+
+		foreach ($pages as $page) {
+			if ($page['parent_id'] == 0) {
+				$array[$page['id']] = $page;
+			} else{
+				$array[$page['parent_id']]['children'][] = $page;		
+			}
+		}
+
+		return $array;
+	}
+
 	public function get_with_parent($id = NULL, $single = FALSE)
 	{
 		$this->db->select('pages.*, p.slug as parent_slug, p.title as parent_title');

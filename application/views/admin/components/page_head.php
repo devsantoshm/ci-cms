@@ -4,9 +4,16 @@
 	<meta charset="UTF-8">
 	<title><?php echo $meta_title ?></title>
 	<link rel="stylesheet" href="<?php echo site_url('assets/css/bootstrap.min.css'); ?>">
+	<script src="<?php echo site_url('assets/js/jquery-1.10.2.js'); ?>"></script>
+	<script src="<?php echo site_url('assets/js/bootstrap.min.js'); ?>"></script>
+	<?php if(isset($sortable) && $sortable === TRUE): ?>
+	<script src="<?php echo site_url('assets/js/jquery-ui-1.10.4.custom.min.js'); ?>"></script>
+	<script src="<?php echo site_url('assets/js/jquery.mjs.nestedSortable.js'); ?>"></script>
+	<?php endif; ?>
 	<script src="<?php echo site_url('assets/js/tinymce/tinymce.min.js'); ?>"></script>
 	<script type="text/javascript">
 		tinymce.init({
+		  convert_newlines_to_brs : false,
 		  selector: 'textarea',
 		  height: 200,
 		  theme: 'modern',
@@ -14,7 +21,7 @@
 		    theme: 'beta-mobile',
 		    plugins: [ 'autosave' ]
 		  },
-		  plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+		  plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
 		  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
 		  image_advtab: true,
 		  templates: [

@@ -17,6 +17,23 @@ class Page extends Admin_Controller {
 		$this->load->view('admin/_layout_main', $this->data);
 	}
 
+	public function order()
+	{
+		$this->data['sortable'] = TRUE; // para mostrar javacript en el head
+
+		$this->data['subview'] = 'admin/page/order';
+		$this->load->view('admin/_layout_main', $this->data);
+	}
+
+	public function order_ajax()
+	{
+		$this->data['sortable'] = $this->input->post('sortable'); // me muestra el nested sortable en un array
+
+		$this->data['pages'] = $this->page_m->get_nested();
+
+		$this->load->view('admin/page/order_ajax', $this->data);
+	}
+
 	public function edit($id = NULL)
 	{
 		// Fetch a page or set a new one
