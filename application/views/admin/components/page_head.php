@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?php echo $meta_title ?></title>
 	<link rel="stylesheet" href="<?php echo site_url('assets/css/bootstrap.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo site_url('assets/css/admin.css'); ?>">
 	<script src="<?php echo site_url('assets/js/jquery-1.10.2.js'); ?>"></script>
 	<script src="<?php echo site_url('assets/js/bootstrap.min.js'); ?>"></script>
 	<?php if(isset($sortable) && $sortable === TRUE): ?>

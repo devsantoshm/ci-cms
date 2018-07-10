@@ -51,6 +51,21 @@ class Page_m extends MY_Model {
 
 	}
 
+	public function save_order($pages)
+	{
+		//le envio post['sortable'] en $pages
+		if (count($pages)) {
+			foreach ($pages as $order => $page) {
+				//dump($page);
+				if ($page['item_id'] != '') {
+					$data = array('parent_id' => (int) $page['parent_id'], 'order' => $order);
+					$this->db->set($data)->where($this->_primary_key, $page['item_id'])->update($this->_table_name);
+					//echo '<pre>'.$this->db->last_query().'</pre>';
+				}
+			}
+		}
+	}
+
 	public function get_nested()
 	{
 		$this->db->order_by('parent_id'); // para que ordene primero los padres luego los hijos

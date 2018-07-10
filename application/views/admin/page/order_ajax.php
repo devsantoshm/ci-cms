@@ -1,7 +1,8 @@
 <?php  
-dump($sortable);
+//dump($sortable);
 echo get_ol($pages);
-
+/*por qué es necesario usar PHP_EOL decir que el código que se inserta con php es código html, 
+y las salidas de html no reconocen saltos de línea ni espacios unidos*/
 function get_ol($array, $child = FALSE)
 {
 	$str = '';

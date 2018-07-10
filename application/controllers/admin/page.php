@@ -27,7 +27,11 @@ class Page extends Admin_Controller {
 
 	public function order_ajax()
 	{
-		$this->data['sortable'] = $this->input->post('sortable'); // me muestra el nested sortable en un array
+		//$this->data['sortable'] = $this->input->post('sortable'); // me muestra el nested sortable en un array
+		//save order from ajax call
+		if (isset($_POST['sortable'])) {
+			$this->page_m->save_order($_POST['sortable']);
+		}
 
 		$this->data['pages'] = $this->page_m->get_nested();
 
