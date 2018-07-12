@@ -5,8 +5,11 @@
 	<title><?php echo $meta_title ?></title>
 	<link rel="stylesheet" href="<?php echo site_url('assets/css/bootstrap.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo site_url('assets/css/admin.css'); ?>">
+	<link rel="stylesheet" href="<?php echo site_url('assets/css/bootstrap-datepicker3.min.css'); ?>">
+
 	<script src="<?php echo site_url('assets/js/jquery-1.10.2.js'); ?>"></script>
 	<script src="<?php echo site_url('assets/js/bootstrap.min.js'); ?>"></script>
+	<script src="<?php echo site_url('assets/js/bootstrap-datepicker.js'); ?>"></script>
 	<?php if(isset($sortable) && $sortable === TRUE): ?>
 	<script src="<?php echo site_url('assets/js/jquery-ui-1.10.4.custom.min.js'); ?>"></script>
 	<script src="<?php echo site_url('assets/js/jquery.mjs.nestedSortable.js'); ?>"></script>
