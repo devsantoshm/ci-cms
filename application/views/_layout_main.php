@@ -1,33 +1,34 @@
-
+<?php $this->load->view('components/page_head'); ?>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="<?php echo site_url('admin/dashboard'); ?>"><?php echo $meta_title ?></a>
-			<ul class="nav navbar-nav">
-				<li class="active">
-					<a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a>
-				</li>
-				<li><?php echo anchor('admin/page', 'pages'); ?></li>
-				<li><?php echo anchor('admin/user', 'users'); ?></li>
-			</ul>
-		</div>
-	</nav>
+	<div class="container">
+		<section>
+			<h1><?php echo config_item('site_name') ?></h1>
+		</section>
+		<nav class="navbar navbar-default">
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+			      <li><a href="#">Link</a></li>
+			      <li class="dropdown">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="#">Action</a></li>
+			          <li><a href="#">Another action</a></li>
+			          <li><a href="#">Something else here</a></li>
+			          <li><a href="#">Separated link</a></li>
+			        </ul>
+			      </li>
+			    </ul>
+			</div>
+		</nav>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
-				<section>
-					<h2>Page name</h2>
-				</section>				
+				<h2>Main page</h2>						
 			</div>
 			<div class="col-md-3">
-				<section>
-					<?php echo mailto('santos@admin.com', '<i class="glyphicon glyphicon-user"></i> santos@admin.com'); ?>
-					<?php echo anchor('admin/user/logout', '<i class="glyphicon glyphicon-off"></i> logout'); ?>
-				</section>
+				<h2>Sidebar</h2>
 			</div>
 		</div>
 	</div>
-	<script src="<?php echo site_url('assets/js/jquery-3.3.1.min.js'); ?>"></script>
-	<script src="<?php echo site_url('assets/js/bootstrap.min.js'); ?>"></script>
-</body>
-</html>
+<?php $this->load->view('components/page_tail'); ?>
