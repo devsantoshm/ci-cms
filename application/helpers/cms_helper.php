@@ -11,6 +11,46 @@ function btn_delete($uri)
 		'onclick' => "return confirm('Do you want to delete this record?')"
 	));
 }
+/*
+$str = "A 'quote' is <b>bold</b>";
+echo htmlentities($str);
+// Produce: A 'quote' is &lt;b&gt;bold&lt;/b&gt;
+*/
+function e($string)
+{
+    return htmlentities($string);
+}
+
+function get_menu($array, $child = FALSE)
+{
+    $CI =& get_instance();
+    $str = '';
+
+    if (count($array)) {
+        $str .= $child == FALSE ? '<ul class="nav navbar-nav">'.PHP_EOL : '<ul class="dropdown-menu">'.PHP_EOL;
+
+        foreach ($array as $item) {
+            $active = $CI->uri->segment(1) == $item['slug'] ? TRUE : FALSE;
+            //Do we have any children?
+            if (isset($item['children']) && count($item['children'])) {
+                $str .= $active ? '<li class="dropdown active">' : '<li class="dropdown">';
+                $str .= '<a href="'.site_url(e($item['slug'])).'">'.e($item['title']);  
+                $str .= ' <b class="caret"></b></a>'.PHP_EOL;
+                $str .= get_menu($item['children'], TRUE);
+            }
+            else {
+                $str .= $active ? '<li class="active">' : '<li>';
+                $str .= '<a href="'.site_url($item['slug']).'">'.e($item['title']).'</a>';
+            }
+
+            $str .= '</li>'.PHP_EOL;
+        }
+
+        $str .= '</ul>' . PHP_EOL;
+    }
+
+    return $str;
+}
 
 /**
  * Dump helper. Functions to dump variables to the screen, in a nicley formatted manner.
