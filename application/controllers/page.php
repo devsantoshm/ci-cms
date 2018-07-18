@@ -11,6 +11,13 @@ class Page extends Frontend_Controller {
 
 	public function index()
 	{
+		// Fetch the page data get_by return con true, es decir con el metodo row()
+		$this->data['page'] = $this->page_m->get_by(array('slug' => (string) $this->uri->segment(1)), TRUE);
+		//echo '<pre>'.$this->db->last_query().'</pre>';
+		//dump($this->data['page']);
+		// current_url() Returns the full URL (including segments) of the page being currently viewed.
+		count($this->data['page']) || show_404(current_url()); 
+
 		$this->load->view('_main_layout', $this->data);
 	}
 

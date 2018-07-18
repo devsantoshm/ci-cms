@@ -12,6 +12,11 @@ class Page_m extends MY_Model {
 			'label' => 'Parent',
 			'rules' => 'trim|intval'
 		),
+		'template' => array(
+			'field' => 'template',
+			'label' => 'Template',
+			'rules' => 'trim|required|xss_clean'
+		),
 		'title' => array(
 			'field' => 'title',
 			'label' => 'Title',
@@ -20,7 +25,7 @@ class Page_m extends MY_Model {
 		'slug' => array(
 			'field' => 'slug',
 			'label' => 'Slug',
-			'rules' => 'trim|required|max_length[100]|url_title|callback__unique_slug|xss_clean'
+			'rules' => 'max_length[100]|url_title|callback__unique_slug'
 		),
 		'body' => array(
 			'field' => 'body',
@@ -37,6 +42,7 @@ class Page_m extends MY_Model {
 		$page->order = '';
 		$page->body = '';
 		$page->parent_id = 0;
+		$page->template = 'page';
 
 		return $page;
 	}

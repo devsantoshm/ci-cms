@@ -2,11 +2,15 @@
 	<h3><?php echo empty($page->id) ? 'Add a new page' : 'Edit page '.$page->title; ?></h3>
 
 	<?php echo validation_errors() ?>
-	<?php echo form_open() ?>
+	<?php echo form_open(); ?>
 	<table class="table">
 		<tr>
 			<td>Parent</td>
 			<td><?php echo form_dropdown('parent_id', $pages_no_parents, $this->input->post('parent_id') ? $this->input->post('parent_id') : $page->parent_id, 'class="form-control"'); ?></td>
+		</tr>
+		<tr>
+			<td>Template</td>
+			<td><?php echo form_dropdown('template', array('page' => 'Page', 'news_archive' => 'News archive', 'homepage' => 'Homepage'), $this->input->post('template') ? $this->input->post('template') : $page->template, 'class="form-control"'); ?></td>
 		</tr>
 		<tr>
 			<td>Title</td>
