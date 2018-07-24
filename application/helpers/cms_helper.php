@@ -11,6 +11,78 @@ function btn_delete($uri)
 		'onclick' => "return confirm('Do you want to delete this record?')"
 	));
 }
+
+function article_link($article)
+{
+    return 'article/' . intval($article->id) . '/' . e($article->slug);
+}
+
+function article_links($articles)
+{
+    $string = '<ul>';
+    
+    foreach ($articles as $article) {
+        $url = article_link($article);
+        $string .= '<li>';
+        $string .= '<h3>' . anchor($url, e($article->title)) . '</h3>';
+        $string .= '<p class="pubdate">' . e($article->pubdate) . '</p>';
+        $string .= '</li>';
+    }
+
+    $string .= '</ul>';
+
+    return $string;
+}
+
+//strip_tags — Retira las etiquetas HTML y PHP de un string
+function get_excerpt($article, $numwords = 50)
+{
+    $string = '';
+    $url = article_link($article);
+    $string .= '<h2>' . anchor($url, e($article->title)) . '</h2>';
+    $string .= '<p class="pubdate">' . e($article->pubdate) . '</p>';
+    $string .= '<p>' . e(limit_to_numwords(strip_tags($article->body), $numwords)) . '</p>';
+    $string .= '<p>' . anchor($url, 'Read more...', array('title' => e($article->title))) . '</p>';
+
+    return $string;
+}
+
+/*
+explode — Divide un string en varios string
+$str = 'uno|dos|tres|cuatro';
+
+// límite positivo
+print_r(explode('|', $str, 2));
+
+Array
+(
+    [0] => uno
+    [1] => dos|tres|cuatro
+)
+
+array_pop — Extrae el último elemento del final del array
+
+implode() = une elementos de un array en un string
+
+$array = array('apellido', 'email', 'teléfono');
+$separado_por_comas = implode(",", $array);
+
+echo $separado_por_comas; // apellido,email,teléfono
+*/
+
+function limit_to_numwords($string, $numwords)
+{
+    $excerpt = explode(' ', $string, $numwords + 1);
+   
+    if (count($excerpt) >= $numwords) {
+        array_pop($excerpt);
+    }
+
+    $excerpt = implode(' ', $excerpt);
+
+    return $excerpt;
+}
+
 /*
 $str = "A 'quote' is <b>bold</b>";
 echo htmlentities($str);

@@ -2,7 +2,7 @@
 <body>
 	<div class="container">
 		<section>
-			<h1><?php echo config_item('site_name') ?></h1>
+			<h1><?php echo anchor('', strtoupper(config_item('site_name'))); ?></h1>
 		</section>
 		<nav class="navbar navbar-default">
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -24,12 +24,13 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9">
+			<!-- <div class="col-md-9">
 				<h2>Main page</h2>						
 			</div>
 			<div class="col-md-3">
 				<h2>Sidebar</h2>
-			</div>
+			</div> -->
+			<?php $this->load->view('templates/' . $subview); ?>
 		</div>
 	</div>
 <?php $this->load->view('components/page_tail'); ?>
