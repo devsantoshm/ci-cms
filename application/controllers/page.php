@@ -61,6 +61,20 @@ class Page extends Frontend_Controller {
 			$config['total_rows'] = $count;
 			$config['per_page'] = $perpage;
 			$config['uri_segment'] = 2; //determines which segment of your URI contains the page number. 
+			
+			$config['full_tag_open'] = '<ul class="pagination">';
+			$config['full_tag_close'] = '</ul>';
+			$config['first_link'] = FALSE;
+			$config['last_link'] = FALSE;
+			$config['next_tag_open'] = '<li>';
+			$config['next_tag_close'] = '</li>';
+			$config['prev_tag_open'] = '<li>';
+			$config['prev_tag_close'] = '</li>';
+			$config['cur_tag_open'] = '<li><a href="#">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+
 			$this->pagination->initialize($config);
 			$this->data['pagination'] = $this->pagination->create_links(); //method returns an empty string when there is no pagination to show.
 			$offset = $this->uri->segment(2);
@@ -69,7 +83,7 @@ class Page extends Frontend_Controller {
 			$offset = 0;
 		}
 
-		dump($this->data['pagination']);
+		//dump($this->data['pagination']);
 		
 		//Fetch articles
 		$this->db->where('pubdate <=', date('Y-m-d'));
@@ -77,8 +91,8 @@ class Page extends Frontend_Controller {
 		$this->db->limit($perpage, $offset); //LIMIT 2, 4 offset=2 y perpage=4
 
 		$this->data['articles'] = $this->article_m->get();
-		dump(count($this->data['articles']));
-		echo '<pre>' . $this->db->last_query() . '</pre>';
+		//dump(count($this->data['articles']));
+		//echo '<pre>' . $this->db->last_query() . '</pre>';
 
 	}
 }
