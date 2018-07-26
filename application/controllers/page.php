@@ -40,13 +40,46 @@ class Page extends Frontend_Controller {
 	{
 		// fetch load articles
 		$this->load->model('article_m');
+		$this->db->where('pubdate <=', date('Y-m-d'));
 		$this->db->limit(6);
 		$this->data['articles'] = $this->article_m->get();
 	}
 
 	private function _news_archive()
 	{
-		dump('Welcom template news_archive');
+		$this->load->model('article_m');
+
+		//Count all articles
+		$this->db->where('pubdate <=', date('Y-m-d'));
+		$count = $this->db->count_all_results('articles'); // Produces an integer, like 25
+
+		//Set up pagination
+		$perpage = 4;
+		if ($count > $perpage) {
+			$this->load->library('pagination');
+			$config['base_url'] = site_url($this->uri->segment(1) . '/');
+			$config['total_rows'] = $count;
+			$config['per_page'] = $perpage;
+			$config['uri_segment'] = 2; //determines which segment of your URI contains the page number. 
+			$this->pagination->initialize($config);
+			$this->data['pagination'] = $this->pagination->create_links(); //method returns an empty string when there is no pagination to show.
+			$offset = $this->uri->segment(2);
+		} else {
+			$this->data['pagination'] = '';
+			$offset = 0;
+		}
+
+		dump($this->data['pagination']);
+		
+		//Fetch articles
+		$this->db->where('pubdate <=', date('Y-m-d'));
+		/*LIMIT 5,30. Seleccionará los resultados a partir del 5 registro hasta los siguientes 30*/
+		$this->db->limit($perpage, $offset); //LIMIT 2, 4 offset=2 y perpage=4
+
+		$this->data['articles'] = $this->article_m->get();
+		dump(count($this->data['articles']));
+		echo '<pre>' . $this->db->last_query() . '</pre>';
+
 	}
 }
 

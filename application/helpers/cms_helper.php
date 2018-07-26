@@ -24,7 +24,7 @@ function article_links($articles)
     foreach ($articles as $article) {
         $url = article_link($article);
         $string .= '<li>';
-        $string .= '<h3>' . anchor($url, e($article->title)) . '</h3>';
+        $string .= '<h3>' . anchor($url, e($article->title)) . ' ></h3>';
         $string .= '<p class="pubdate">' . e($article->pubdate) . '</p>';
         $string .= '</li>';
     }

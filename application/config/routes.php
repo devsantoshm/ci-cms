@@ -55,5 +55,15 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 /*:any) will match a segment containing any character (except for ‘/’, which is the segment delimiter).
+$route['(:any)'] = 'pages/view/$1'; means that anything you type on the url will proceed to pages/view/$1 the $1 here is the parameter you would like to pass to a controller/method example
+
+$route['login/(:any)'] = 'home/bacon/$1';
+
+in this example you are telling CI that anything that goes to login with any parameter like login/john will proceed to your home/bacon/john (:any) will match all string and integer if you use (:num) it will only match integer parameters like
+
+$route['login/(':num')'] = 'home/bacon/$1'
+
+in this config you are specifying that if a url login has a integer after it like login/1234, you would like it to redirect to home/bacon/1234 if you don't know how many parameters you would like to pass you could try $route['login/(:any).*'] = 'home/bacon/$1' 
+
 */
-$route[':any'] = 'page/index/$1';
+$route['(:any).*'] = 'page/index/$1';
