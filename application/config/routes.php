@@ -50,7 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'page';
-$route['404_override'] = '';
+
+/*This route indicates which controller class should be loaded if the requested controller is not found. It will override the default 404 error page. Same per-directory rules as with ‘default_controller’ apply here as well.
+
+It won’t affect to the show_404() function, which will continue loading the default error_404.php file at application/views/errors/error_404.php.*/
+$route['404_override'] = 'page';
+
+$route['article/(:num)/(:any)'] = 'article/index/$1/$2';
+
 $route['translate_uri_dashes'] = FALSE;
 
 
@@ -66,4 +73,4 @@ $route['login/(':num')'] = 'home/bacon/$1'
 in this config you are specifying that if a url login has a integer after it like login/1234, you would like it to redirect to home/bacon/1234 if you don't know how many parameters you would like to pass you could try $route['login/(:any).*'] = 'home/bacon/$1' 
 
 */
-$route['(:any).*'] = 'page/index/$1';
+//$route['(:any).*'] = 'page/index/$1';
