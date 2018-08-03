@@ -6,13 +6,13 @@ class Article extends Frontend_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('article_m');
+		$this->data['recent_news'] = $this->article_m->get_recent();
 	}
 
 	public function index($id, $slug)
 	{
 		// Fetch the article
-		$this->db->where('pubdate <=', date('Y-m-d'));
+		$this->article_m->set_published();
 		$this->data['article'] = $this->article_m->get($id);
 
 		// Return 404 if not found uri_string() return blog/comments/123

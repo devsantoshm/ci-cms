@@ -6,7 +6,6 @@ class Page extends Frontend_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('page_m');
 	}
 
 	public function index()
@@ -33,24 +32,24 @@ class Page extends Frontend_Controller {
 
 	private function _page()
 	{
+		$this->data['recent_news'] = $this->article_m->get_recent();
 		dump('Welcom template page');
 	}
 
 	private function _homepage()
 	{
-		// fetch load articles
-		$this->load->model('article_m');
-		$this->db->where('pubdate <=', date('Y-m-d'));
+		// fetch load articles	
+		$this->article_m->set_published();
 		$this->db->limit(6);
 		$this->data['articles'] = $this->article_m->get();
 	}
 
 	private function _news_archive()
 	{
-		$this->load->model('article_m');
+		$this->data['recent_news'] = $this->article_m->get_recent();
 
 		//Count all articles
-		$this->db->where('pubdate <=', date('Y-m-d'));
+		$this->article_m->set_published();
 		$count = $this->db->count_all_results('articles'); // Produces an integer, like 25
 
 		//Set up pagination
@@ -73,14 +72,13 @@ class Page extends Frontend_Controller {
 		//dump($this->data['pagination']);
 		
 		//Fetch articles
-		$this->db->where('pubdate <=', date('Y-m-d'));
+		$this->article_m->set_published();
 		/*LIMIT 5,30. Seleccionará los resultados a partir del 5 registro hasta los siguientes 30*/
 		$this->db->limit($perpage, $offset); //LIMIT 2, 4 offset=2 y perpage=4
 
 		$this->data['articles'] = $this->article_m->get();
 		//dump(count($this->data['articles']));
 		//echo '<pre>' . $this->db->last_query() . '</pre>';
-
 	}
 }
 
