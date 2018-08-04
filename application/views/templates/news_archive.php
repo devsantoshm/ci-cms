@@ -15,7 +15,5 @@
 	<!-- array_slice — Extraer una parte de un array 
 		$entrada = array("a", "b", "c", "d", "e");
 		$salida = array_slice($entrada, 2);      // devuelve "c", "d", y "e"-->
-	<?php echo anchor($news_archive_link, '+ News archive'); ?>
-	<?php $articles = array_slice($articles, 3); ?>
-	<?php echo article_links($articles); ?>
+	<?php $this->load->view('sidebar'); ?>
 </div>

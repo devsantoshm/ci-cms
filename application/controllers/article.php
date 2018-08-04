@@ -26,6 +26,7 @@ class Article extends Frontend_Controller {
 			redirect('article/' . $this->data['article']->id . '/' . $this->data['article']->slug, 'location', 301);
 		}
 		// Load view
+		add_meta_title($this->data['article']->title);
 		$this->data['subview'] = 'article';
 		$this->load->view('_main_layout', $this->data);
 	}

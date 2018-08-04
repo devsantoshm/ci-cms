@@ -87,8 +87,10 @@ class Page_m extends MY_Model {
 
 		foreach ($pages as $page) {
 			if ($page['parent_id'] == 0) {
+				// This page has no parent
 				$array[$page['id']] = $page;
 			} else{
+				// This is a child page
 				$array[$page['parent_id']]['children'][] = $page;		
 			}
 		}

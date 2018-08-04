@@ -17,6 +17,8 @@ class Page extends Frontend_Controller {
 		// current_url() Returns the full URL (including segments) of the page being currently viewed.
 		count($this->data['page']) || show_404(current_url());
 
+		add_meta_title($this->data['page']->title);
+
 		// Fetch the page data
 		$method = '_' . $this->data['page']->template;
 		if (method_exists($this, $method)) {
@@ -33,7 +35,7 @@ class Page extends Frontend_Controller {
 	private function _page()
 	{
 		$this->data['recent_news'] = $this->article_m->get_recent();
-		dump('Welcom template page');
+		//dump('Welcom template page');
 	}
 
 	private function _homepage()
